@@ -1,0 +1,221 @@
+JavaScript Challenge Problems
+
+=======================================
+
+1. JavaScript Challenge Problem Overview
+
+JavaScript is not only a great for Web Development, it is in fact a full fledged programming language that you can do some really powerful things with. These programming challenges will push you to use JavaScript beyond it's simple scripting purpose. You will utilize JavaScript just like you would any other programming language.
+
+=======================================
+
+2. Relationships
+
+We learned about relational operators and how they can classify the relationship between two values. Your job is to write the function getRelationship(x,y) function, which should return a string representing whether x is >, < or = y. 
+
+function getRelationship(x, y) {
+    // Your code goes here!
+    var num1, num2
+    if (isFinite(String(x)) && isFinite(String(y))){
+        if (x>y) {return '>'}
+        if (x<y) {return '<'}
+        if (x===y) {return '='}
+    }
+    if (isNaN(x)){num1='NaN1'}
+    if (isNaN(y)){num2='NaN2'}
+    if (num1==='NaN1' && num2==='NaN2'){return "Can't compare relationships because "+x+' and '+y+' are not numbers'}   
+    if (num1==="NaN1" ){return "Can't compare relationships because "+x+" is not a number"}   
+    if (num2==="NaN2" ){return "Can't compare relationships because "+y+" is not a number"}   
+}
+
+// Try logging these functions to test your code!
+console.log(getRelationship(1,4));
+console.log(getRelationship(1,1));
+console.log(getRelationship("that",2));
+console.log(getRelationship("that","the other"));
+console.log(getRelationship(3));
+console.log(getRelationship("hi"));
+console.log(getRelationship(NaN));
+console.log(getRelationship(NaN, undefined));
+
+=======================================
+
+3. Astronaut Arrays
+
+Finish the alphabetizer(_names) function, which takes in a names array (of length N) containing strings of names and returns an alphabetized array of names in lastname, firstname format.
+
+var moonWalkers = [
+  "Neil Armstrong",
+  "Buzz Aldrin",
+  "Pete Conrad",
+  "Alan Bean",
+  "Alan Shepard",
+  "Edgar Mitchell",
+  "David Scott",
+  "James Irwin",
+  "John Young",
+  "Charles Duke",
+  "Eugene Cernan",
+  "Harrison Schmitt"
+];
+
+function reverseNames(names) {
+    var revNames=[]
+    for (i=0;i<names.length;i++){
+		cName = names[i].substr(0,names[i].indexOf(' ')); 		
+		sName = names[i].substr(names[i].indexOf(' ')+1); 
+        revName=sName +', '+ cName;
+        revNames.push(revName);
+    }
+	revNames.sort()
+    return revNames
+}
+
+function alphabetizer(names) {
+    // Your code goes here!
+    return(reverseNames(names));
+}
+
+// Try logging your results to test your code!
+console.log(alphabetizer(moonWalkers));
+
+=======================================
+
+4. Pagespeed Insights
+
+Create a totalBytes(psiResults) function that iterates through pageStats in the psiResults object and returns the total number of bytes to load the website.
+Then, create a ruleList(psiResults) function that iterates through the localizedRuleNames in ruleResults and returns an array of their strings.
+
+// Iterate through the localizedRuleNames in ruleResults and 
+// return an array of their strings.
+function ruleList(results) {
+	localizedRuleNames = []
+//	console.log(results.formattedResults.ruleResults);//;
+	for(var property in results.formattedResults.ruleResults){
+//		console.log("property: ",property)
+//		console.log("object: ",results.formattedResults.ruleResults[property]);
+//		console.log("localizedRuleName: ", results.formattedResults.ruleResults[property].localizedRuleName);
+		localizedRuleNames.push(results.formattedResults.ruleResults[property].localizedRuleName);
+		}	
+	return localizedRuleNames;
+}
+
+// Iterate through pageStats in the psiResults object and 
+// return the total number of bytes to load the website.
+function totalBytes(results) {
+	var total=0;
+	for (var value in results.pageStats){
+//		console.log("value: ", value);
+//		console.log("number: ", results.pageStats[value]);
+		if (value.search("Bytes") !== -1){
+			total = total + parseInt(results.pageStats[value]);
+			console.log("total so far: ", total)
+		}
+	}
+	return total;
+}
+
+// Below, you'll find a sample PS Insights JSON
+// and two console.log statements to help you test your code!
+
+psinsights = {
+ "kind": "pagespeedonline#result",
+ "id": "/speed/pagespeed",
+ "responseCode": 200,
+ "title": "PageSpeed Home",
+ "score": 90,
+ "pageStats": {
+  "numberResources": 22,
+  "numberHosts": 7,
+  "totalRequestBytes": "2761",
+  "numberStaticResources": 16,
+  "htmlResponseBytes": "91981",
+  "cssResponseBytes": "37728",
+  "imageResponseBytes": "13909",
+  "javascriptResponseBytes": "247214",
+  "otherResponseBytes": "8804",
+  "numberJsResources": 6,
+  "numberCssResources": 2
+ },
+ "formattedResults": {
+  "locale": "en_US",
+  "ruleResults": {
+    "AvoidBadRequests": {
+      "localizedRuleName": "Avoid bad requests",
+      "ruleImpact": 0.0
+    },
+    "MinifyJavaScript": {
+      "localizedRuleName": "Minify JavaScript",
+      "ruleImpact": 0.1417,
+      "urlBlocks": [
+      {
+        "header": {
+       "format": "Minifying the following JavaScript resources could reduce their size by $1 ($2% reduction).",
+       "args": [
+        {
+         "type": "BYTES",
+         "value": "1.3KiB"
+        },
+        {
+         "type": "INT_LITERAL",
+         "value": "0"
+        }
+       ]
+        },
+        "urls": [
+        {
+          "result": {
+         "format": "Minifying $1 could save $2 ($3% reduction).",
+         "args": [
+          {
+           "type": "URL",
+           "value": "http://code.google.com/js/codesite_tail.pack.04102009.js"
+          },
+          {
+           "type": "BYTES",
+           "value": "717B"
+          },
+          {
+           "type": "INT_LITERAL",
+           "value": "1"
+          }
+         ]
+        }
+       },
+       {
+        "result": {
+         "format": "Minifying $1 could save $2 ($3% reduction).",
+         "args": [
+          {
+           "type": "URL",
+           "value": "http://www.gmodules.com/ig/proxy?url\u003dhttp%3A%2F%2Fjqueryjs.googlecode.com%2Ffiles%2Fjquery-1.2.6.min.js"
+          },
+          {
+           "type": "BYTES",
+           "value": "258B"
+          },
+          {
+           "type": "INT_LITERAL",
+           "value": "0"
+          }
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "SpriteImages": {
+    "localizedRuleName": "Combine images into CSS sprites",
+    "ruleImpact": 0.0
+   }
+  }
+ },
+ "version": {
+  "major": 1,
+  "minor": 11
+ }
+};
+
+// Try logging the outputs below to test your code!
+console.log(ruleList(psinsights));
+console.log(totalBytes(psinsights));

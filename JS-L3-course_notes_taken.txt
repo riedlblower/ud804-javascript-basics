@@ -1,0 +1,125 @@
+JavaScript Basics
+
+Udacity UD084
+
+Lesson 3: Flow Control
+
+1. Quiz: If Statements
+if (condition) {
+	do something();
+}	else {
+	do somethingElse();
+}
+
+Note the () and the {} and no colon 
+	
+Evaluators = { <, >, ===, !=, !==, ==, <=, >= }	
+Note ===..... Strict equality (===) vs Loose equality (==)
+=== is slightly safer than ==. Same for !== and !=
+
+
+2. While Loops
+
+while (condition) {
+	doSomething();
+	}
+	
+3. For Loops
+for(i=0; i<9; i++) {
+	console.log(i);
+	}
+	
+4. For-In Loops
+for (item in object)      <<-- note item is an index not the cell entry for the array object
+	{ doSoomething();
+}
+
+var countries = ["IE", "UK", "FR", "IT"]
+for (country in countries) {
+	console.log(countries[country]);
+	}
+	
+5. Quiz: Work!
+    for (employer in work.employers) {
+    	formattedEmployer = HTMLworkEmployer.replace("%data%", work.employers[employer]);
+    	formattedTitle = HTMLworkTitle.replace("%data%", work.titles[employer]);
+        var formattedEmployerTitle = formattedEmployer + formattedTitle;
+	    $(".work-entry:last").append(formattedEmployerTitle);
+        var formattedDate = HTMLworkDates.replace("%data%", work.dates[employer]);
+	    $(".work-entry:last").append(formattedDate);
+        var formattedDescription = HTMLworkDescription.replace("%data%", work.descriptions[employer]);
+	    $(".work-entry:last").append(formattedDescription);
+	}
+
+6. A Note about For-in loops
+Don't ever use For-in loops!!!
+
+var letters = ['a', 'b','c']
+letters.forEach(function(item,index,array){console.log(item,index)});    <-- note the ')' at the end.
+ a 0
+ b 1
+ c 2
+
+7. Quiz: Functions
+var myFunc=function(param1, param2) {//code}   ===    function myFunc(param1, param2) {//code}
+
+8. Click Metrics
+
+9. Collecting Click Locations
+$(document).click(function(loc) {
+  var x = loc.pageX;
+  var y = loc.pageY;
+  logClicks(x,y);
+});
+
+10. Quiz: Return Statements
+function locationizer(work_obj) {
+    var locationArray=[];
+    for (job in work_obj.jobs) {
+        var place = work_obj.jobs[job].location;
+        locationArray.push(place)
+    }
+    return locationArray;
+}
+
+11. Quiz: Internationalise Names
+function inName() {
+  var name = window.name;
+  name = name.trim().split(" ");
+  console.log(name);
+  name[1] = name[1].toUpperCase();
+  name[0] = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase();
+  
+  return name[0] +" "+ name[1];
+  
+  }
+
+var name = $("#name").text();
+
+$('#main').append(internationalizeButton);    // adds button to the screen
+
+12. Encapsulation.
+
+13. Quiz: Encapsulating Functions
+
+14. Quiz: Independent Research
+Anonymous Fuctions e.g. 
+      $(document).click(function(loc){
+      	console.log(loc.pageX,log.pageY);
+      	});
+		
+another example is      	
+      $.getJSON("test.json", function(data) {
+          console.log(data);
+      });
+is the same as 
+      var printData = function(data){
+        console.log(data)
+      };
+      $.getJSON("test.json", printData);	
+	  
+	  
+https://developers.google.com/maps/documentation/javascript/get-api-key?refresh=1
+Project: javaScriptBasics
+YOUR API KEY
+AIzaSyBmZrefglc0m64sdENzIcdlzJFuk-RqWBk

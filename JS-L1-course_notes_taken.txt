@@ -1,0 +1,45 @@
+JavaScript Basics
+
+Udacity UD084
+
+Lesson 1: Get Up and Running
+
+1. Welcome to the Course!
+
+2. Resume Introduction
+
+3. Quiz: Your Goals
+
+4. The GitHub Repo
+
+5. Quiz: Download the GH Repo
+
+6. A Note about HTML
+
+7. The Resume's HTML
+in index.html the js is after the html
+
+8. CSS and JS in the Resume
+jQuery.js is important
+	
+9. The Browser JavaScript Console
+console.log("Hello World!"); is used for printing and useful for debugging
+	
+10. Quiz: The Browser JavaScript
+don't forget the ;
+console.log("Hello World!"); results in 
+      Hello World!
+      undefined    <<-- nothing to return as no new data to save
+	
+document.URL; returns: "file:///D:/udacity/ud084-javascript-basics/frontend-nanodegree-resume/index.html" which is a string
+	
+11. Hacking Udacity's Front Page
+$(".super-header-wrapper").html("<img style='width:100%' src='http://goo.gl/WCrBmS'>");
+The $("") is an indication you're using Query
+
+12.
+
+13.
+
+
+

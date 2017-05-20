@@ -1,0 +1,264 @@
+JavaScript Basics
+
+Udacity UD084
+
+Lesson 2: Data Types
+JavaScript Syntax - Variables and Simple Data
+
+1. var loveJS = true;
+var firstName = "James";
+var age = 32;
+var declares a new variable for all data types and 'var' is mandatory when declaring variables
+
+var myArray = [];
+var myFunc = function(){};
+var myObject =  {};
+
+CTRL + SHIFT + i opens up the developer tools which includes a console
+
+Adding: var firstName = "Michael"; var age = 32; console.log(firstName); to resumeBuilder.js file results in Michael being printed on reloading index.html
+
+// comments out one line in JS file
+/* followed later by */ comments out the enclosed segment
+
+2. Quiz: Save and .append() Data
+var firstName = "Michael"; 
+var age = 32; 
+console.log(firstName);
+
+var awesomeThoughts = "I am Michael and I am AWESOME!"
+console.log(awesomeThoughts);
+
+3. Quiz: string.replace()
+var funThoughts = awesomeThoughts.replace("AWESOME","FUN");
+console.log(funThoughts);          // this prints it out to the console log
+$("#main").append(funThoughts);    // this prints it out to the webpage
+
+4. Mixing .replace() and .append()
+var formattedName = HTMLheaderName.replace("%data%", name);     // HTMLheaderName is found in js/helper.js
+("#header").append(formattedName);      //header is an id/label found in the index.html
+The result is that the webpage has a formatted name
+
+5. Quiz: Format Data, Build a Resume Header
+    <div id="header" class="center-content clear-fix">    // index.html
+      <ul id="topContacts" class="flex-box"></ul>
+    </div>
+
+var name = "Michael Sexton";                //resumeBuilder.js
+var role = "Software Test Engineer";
+var formattedName = HTMLheaderName.replace("%data%", name);
+var formattedRole = HTMLheaderRole.replace("%data%", role);
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+
+Result : name and role go before 'topContacts', i.e. at the beginning.
+
+6. Quiz: String Manipulation Quiz 1
+var s = "audacity";
+var udacityizer = function(s) {  
+    // Manipulate s to make it equal to "Udacity"
+    s = ["U", s.slice(2,8)].join('');
+	// s = s[1].toUpperCase() + s.slice(2); was given as the Udacity instructor
+    return s;
+};
+console.log(udacityizer(s));
+
+7. Truthy/Falsy
+Truthy =	{ true, non-zero numbers, "Strings", objects, arrays, functions } - all evaluate to true
+Falsy = 	{ false, 0, "", undefined, null, NaN } - all evaluate to false (NaN = Not a Number)
+
+8. Quiz: var quiz = true
+
+9. Arrays
+var skills = ["python","java", "J"];
+$("#main").append(skills[0]);   <-- put's first item of array onto page.
+
+10. Quiz: Append()ing Array Quiz
+
+11. Quiz: Array Manipulation
+    last_value = _array.pop()
+    newArray = _array;
+    newArray.push(last_value+1);
+
+12. String Manipulation Quiz 2
+function nameChanger(oldName) {
+    var finalName = oldName;
+
+    var separator = " ";
+    var arrayOfStrings = oldName.split(separator);
+    var firstname = arrayOfStrings[0];
+    var surname = arrayOfStrings[1];
+
+    firstname = firstname.slice(0,1).toUpperCase() + firstname.slice(1).toLowerCase();
+    surname = surname.toUpperCase();
+    finalName = firstname + " " + surname
+
+    return finalName;
+};
+
+13. Object Literal Notation
+There are no classes in JavaScript!!
+Objects are OK e.g. var myObj = {};
+Arrays are special types of objects in JS
+Objects can hold information and do things
+
+var skills = ["programming", "JS", "teaching"]
+var bio = {
+	"name" : "James",     <-- note the " and the ,
+	"age" : 32
+	"skills" : skills     <-- note this is an array
+};
+
+$("#main").append(bio.name);    <-- append James's name to the page
+
+14. Quiz: Biography Quiz
+
+15. Dot and Bracket Notation
+adding new properties to some object
+bio.city = "Cork";     <-- no 'var' in this case, bio is already defined,
+$("#main").append(bio.city);    <-- append James's home city to the page
+			var myObj = {};
+			myObj.property  = someValue
+
+another option is 
+bio["city"] = "Cork";     <-- no 'var' in this case, bio is already defined,
+$("#main").append(bio["city"]);    <-- append James's home city to the page
+
+16. Quiz: Practise with Objects
+
+17. A Note about JSON			
+JavaScript Object Notation. JSON is a popular and simple format for storing and transferring nested or hierarchal data. 
+If you're generating JSON by hand, you should copy and paste your code into a JSON linter like jsonlint.com to quickly and easily find syntax errors. 
+With jsonlint.com real values have to entered with variables not allowed e.g 
+{
+	"name": "Michael",
+	"role": "Engineer",
+	"pictureURL": "bioPic",
+	"welcomeMessage": "Hello World",
+	"skills": "Testing"
+}
+
+18. JSON
+
+19. Validaing JSON
+
+20. Quiz: Validating JSON
+{
+	"education": [{
+		"school": "University College Cork ",
+		"city": "Cork ",
+		"courses": ["B.E. Electrical Engineering", "M.Sc. Applied Mathematics"],
+		"Years": "1989 - 1995"
+	}, {
+		"school": "Udacity ",
+		"city": "online ",
+		"courses": ["Python", "Software Testing", "Java", "GitHub", "HTML/CSS", "Android", "RDB", "JavaScript"],
+		"Years": "2013 - present"
+	}]
+}
+
+
+=========================================================================================
+PROBLEM SET 1
+1. What is the DOM (Document Object Model)? 
+CTRL+SHF+i ... examine HTML in Elements tab until <div class="index--container--2OwOl index--_container--1-IzD"> and height of screen highlighted
+document.getElementsByClassName("index--container--2OwOl index--_container--1-IzD")[0].clientHeight
+-> 577 which is the height of the screen.
+
+2. Quiz: Black out the Resume
+At end of index.html - note the 'none' and 'black'
+    if(document.getElementsByClassName('work-entry').length === 0) {
+      document.getElementById('workExperience').style.display = 'none';
+    }
+    if(document.getElementsByClassName('project-entry').length === 0) {
+      document.getElementById('projects').style.display = 'black';
+
+3. Quiz: Protecting the Resume
+var charEscape = function(_html) {
+    var newHTML = _html;
+    // How will you make sure that newHTML doesn't contain any < or > ?
+    // Your code goes here!
+    newHTML = newHTML.replace(/</g, '&lt');    <-- /g means globally, '&lt' is just a marker to identify the change
+    newHTML = newHTML.replace(/>/g, '&gt');
+    // Don't delete this line!
+    return newHTML;
+};
+
+4. Quiz: Dot Notation versus Bracket Notation
+
+Note: everything with bracket notation is accepted while dot notation requires properties that begin with a letter and do not include special characters.
+
+var weirdObject = {
+    "property": "Time for an astronomy lesson!",
+    "property1": "Cameron's minor in college was astronomy",
+    "property-2": "The 4 Galilean largest moons of Jupiter are:",
+    "property 3": "Io, Ganymede, Callisto, Europa",
+    "property$": "Saturn's moon Enceladus has liquid water ocean under its icy surface",
+    " property": "The Sun contains 99.87% of the mass of the entire solar system",
+    "property()": "There are 5 dwarf planets in our solar system:",
+    "property[]": "Pluto, Ceres, Eris, Haumea, Makemake",
+    "8property": "Mars has two tiny moons: Phobos and Deimos"
+};
+
+// Use console.log() to figure out if dot and/or bracket notation
+// will work to access the properties below. Mark true if you can use dot/bracket
+// notation to access the property, otherwise mark false.
+
+// For example, uncomment the line below to see if you can use dot notation to access `property1`.
+console.log(weirdObject.property);					<<<---- good
+console.log(weirdObject["property"]);				<<<---- good
+console.log(weirdObject.property1);					<<<---- good
+console.log(weirdObject["property1"]);				<<<---- good
+console.log(weirdObject.property-2);				<<<---- bad
+console.log(weirdObject["property-2"]);				<<<---- good
+console.log(weirdObject.property 3);				<<<---- bad
+console.log(weirdObject["property 3"]);				<<<---- good
+console.log(weirdObject.property$);					<<<---- good
+console.log(weirdObject["property$"]);				<<<---- good
+console.log(weirdObject. property);					<<<---- bad
+console.log(weirdObject[" property"]);				<<<---- good
+console.log(weirdObject.property());				<<<---- bad
+console.log(weirdObject["property()"]);				<<<---- good
+console.log(weirdObject.property[]);				<<<---- bad
+console.log(weirdObject["property[]"]);				<<<---- good
+console.log(weirdObject.8property);					<<<---- bad
+console.log(weirdObject["8property"]);				<<<---- good
+
+// I'll give you the first answer. The rest are set to false. Try out each property and
+// if you can use dot or bracket notation to access it, change the answer to true!
+
+// property
+var dotNotation0 = true;
+var bracketNotation0 = true;
+
+// property1
+var dotNotation1 = true;
+var bracketNotation1 = true;
+
+// property-2
+var dotNotation2 = false;
+var bracketNotation2 = true;
+
+// property 3
+var dotNotation3 = false;
+var bracketNotation3 = true;
+
+// property$
+var dotNotation4 = true;
+var bracketNotation4 = true;
+
+// *space*property
+var dotNotation5 = false;
+var bracketNotation5 = true;
+
+// property()
+var dotNotation6 = false;
+var bracketNotation6 = true;
+
+// property[]
+var dotNotation7 = false;
+var bracketNotation7 = true;
+
+// 8property
+var dotNotation8 = false;
+var bracketNotation8 = true;
